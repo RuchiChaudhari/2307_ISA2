@@ -7,6 +7,12 @@ pipeline {
         DOCKER_PASSWORD = 'abhiruchi1996' // Your Docker password
     }
     stages {
+        stage('Clean and Clone Repository') {
+            steps {
+                cleanWs()
+                sh 'git clone https://github.com/RuchiChaudhari/2307_ISA2.git'
+            }
+        }
         stage('List Files') {
             steps {
                 dir('2307_ISA2') {
