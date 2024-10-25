@@ -23,7 +23,6 @@ pipeline {
         stage('Build') {
             steps {
                 dir('2307_ISA2') {
-                    // Ensure the Docker binary is found using the provided PATH
                     sh 'docker build -t ruchi563/2307 -f Dockerfile .'
                 }
             }
@@ -47,7 +46,9 @@ pipeline {
         }        
         stage('Run in Daemon Mode') {
             steps {
-                sh 'docker run -d --name 2307 ruchi563/2307'
+                    dir('2307_ISA2') {
+                    sh 'docker build -t ruchi563/2307 -f Dockerfile .'
+                    sh 'docker run -d --name 2307 ruchi563/2307'
             }
         }
     }
