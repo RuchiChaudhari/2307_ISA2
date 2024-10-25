@@ -10,7 +10,7 @@ pipeline {
         stage('Clean and Clone Repository') {
             steps {
                 cleanWs()
-                sh 'git clone https://github.com/RuchiChaudhari/2307_ISA2.git'
+                sh 'git clone https://github.com/RuchiChaudhari/ModernDev.git'
             }
         }
         stage('List Files') {
@@ -23,6 +23,7 @@ pipeline {
         stage('Build') {
             steps {
                 dir('2307_ISA2') {
+                    // Ensure the Docker binary is found using the provided PATH
                     sh 'docker build -t ruchi563/2307 -f Dockerfile .'
                 }
             }
@@ -38,17 +39,10 @@ pipeline {
                 sh 'docker push ruchi563/2307'
             }
         }
-
-        stage('Delete') {
-            steps {
-                sh 'docker rm -f 2307'
-            }
-        }        
         stage('Run in Daemon Mode') {
             steps {
-                    dir('2307_ISA2') {
-                    sh 'docker build -t ruchi563/2307 -f Dockerfile .'
-                    sh 'docker run -d --name 2307 ruchi563/2307'
+                sh 'docker rm -f 2307 || true'
+                sh 'docker run -d --name 2307 ruchi563/2307'
             }
         }
     }
