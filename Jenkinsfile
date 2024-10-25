@@ -12,23 +12,11 @@ pipeline {
                 sh 'git clone https://github.com/RuchiChaudhari/2307_ISA2.git'
             }
         }
-        stage('List Files') {
-            steps {
-                dir('2307_ISA2') {
-                    sh 'ls -l'
-                }
-            }
-        }
         stage('Build') {
             steps {
                 dir('2307_ISA2') {
                     sh 'docker build -t ruchi563/2307 -f Dockerfile .'
                 }
-            }
-        }
-        stage('Login') {
-            steps {
-                sh 'echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin docker.io'
             }
         }
         stage('Push') {
