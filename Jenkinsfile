@@ -45,8 +45,7 @@ pipeline {
             }
         }
         stage('Run in Daemon Mode') {
-            steps {
-                sh 'docker container run  2307'
+            steps { 
                 sh 'docker run -d --name 2307 ruchi563/2307'
             }
         }
