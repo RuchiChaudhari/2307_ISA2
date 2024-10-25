@@ -39,10 +39,15 @@ pipeline {
                 sh 'docker push ruchi563/2307'
             }
         }
+
+        stage('Delete') {
+            steps {
+                sh 'docker rm -f 2307 || true'
+            }
+        }        
         stage('Run in Daemon Mode') {
             steps {
-                sh 'docker rm -f my_container || true'
-                sh 'docker run -d --name my_container ruchi563/2307'
+                sh 'docker run -d --name 2307 ruchi563/2307'
             }
         }
     }
