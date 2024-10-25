@@ -41,7 +41,7 @@ pipeline {
 
         stage('Delete') {
             steps {
-                sh 'docker rm -f 2307 || true'
+                sh 'docker rm -f 2307'
             }
         }        
         stage('Run in Daemon Mode') {
