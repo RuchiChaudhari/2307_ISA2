@@ -15,7 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                 dir('2307_ISA2') {
-                    sh 'docker build -t ruchi563/2307 -f Dockerfile .'
+                    sh 'docker buildx build -t ruchi563/2307 -f Dockerfile .'
                 }
             }
         }
