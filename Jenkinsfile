@@ -10,7 +10,7 @@ pipeline {
         stage('Clean and Clone Repository') {
             steps {
                 cleanWs()
-                sh 'git clone https://github.com/RuchiChaudhari/ModernDev.git'
+                sh 'git clone https://github.com/RuchiChaudhari/2307_ISA2.git'
             }
         }
         stage('List Files') {
